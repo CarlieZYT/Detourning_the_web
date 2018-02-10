@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Never Boring Book Recommendation</title>
+	<style>
+		body{
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: #ddd;
+			font-size: 12pt;
+		}
+		.content {
+    		max-width: 500px;
+    		margin: auto;
+    		margin-top: 100px;
+    		vertical-align: middle;
+    		text-align: center;
+		}
+		a{
+			font-family: Arial, Helvetica, sans-serif;
+			color: #4F1686;
+			text-decoration: none;\
+		}
+		a:hover{
+			color: #fff;
+			background-color: #4F1686;
+		}
+		button{
+			height: 50px;
+			background-color: #4F1686;
+			color:#E1E1E1;
+			font-size: 12pt;
+			outline: none;
+			margin: 20px;
+			padding: 10px;
+		}
+	</style>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+        $.getJSON('filtered_books.json')
+		.done( function(data) {
+			books = data;
+		}).fail( function() {
+			$('#book').html('Sorry! We could not load the data at the moment');
+		});
+
+        
+		$('#lottery').on('click', function(e) {
+			e.preventDefault();
+
+			var book = books[Math.floor(Math.random()*books.length)];
+			$('#book').html(book['title']);
+			$('#book').attr("href", "https://www.worldcat.org/"+book['href']);
+		});
+    });
+	</script>
+</head>
+<body>
+<h3>DickCat</h3>
+
+<div class="content">
+	<h1>NEVER BORING BOOK RECOMMENDATION</h1>
+	<div style="width: 100%; min-height: 200px; font-size: 20pt;">
+  		<a id="book" target="_blank">?</a>
+  	</div>
+  	<button id="lottery"> Click for book recommendation</button>
+</div>
+
+</body>
+</html>
