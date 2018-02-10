@@ -26,9 +26,3 @@ outfile = open('filtered_books.json', 'w')
 json.dump(filtered_books, outfile, indent=2)
 outfile.close()
 
-# for k in myDict:
-# 	for v in myDict[k]:
-# 		if 'Mary' in v:
-# 			return k
-# return None
-
